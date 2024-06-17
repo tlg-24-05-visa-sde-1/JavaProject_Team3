@@ -1,0 +1,2 @@
+class BotOpponent extends Player{
+}
