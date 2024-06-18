@@ -63,4 +63,13 @@ abstract class User {
              throw new IllegalStateException("Unknown user type");
             }
         }
+
+        // dropToken() : drops the Player (Y) or BotOpponent (r) token into their chosen column
+        public void dropToken(String color) {
+         int column = chooseColumn(); // Gets the chosen column to drop the token into it
+         boolean success = board.update(column, new Token(color)); // attempts to drop token into the column on game board
+         if (!success) {
+             throw new IllegalStateException("Failed to drop token in column " + column);
+         }
+        }
     }
