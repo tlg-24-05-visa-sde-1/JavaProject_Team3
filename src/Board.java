@@ -3,25 +3,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private List<List<Token>> columns;
+    private List<Column> columns;
+
     public Board() {
         columns = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
-            columns.add(new ArrayList<>());
+            columns.add(new Column());
         }
     }
+
     public boolean update(int column, Token token) {
-        if (columns.get(column).size() == 6) {
-            columns.get(column).add(token);
-            return true;
-        }
-        return false;
+        return columns.get(column).addToken(token);
     }
+
     public void show () {
         for (int row = 5; row >= 0; row--) {
             for (int col = 0; col < 7; col++) {
-                if (columns.get(col).size()> row) {
-                    System.out.println("| " + columns.get(col).get(row).getColor() + " ");
+                Token token = columns.get(col).getTokenAt(row);
+                if (token != null) {
+                    System.out.println("| " + token.getColor() + " ");
                 }else {
                     System.out.println("| _ ");
                 }
@@ -29,11 +29,70 @@ public class Board {
             System.out.println("|");
         }
     }
+
     public boolean checkWin () {
+        return checkHorizantalWin() || checkVertical() || checkDiagnoalWin();
+    }
+
+    private boolean checkHorizantalWin() {
+        for (int row = 0; row < 6; row++) {
+            for (int col = 0; col < 4; col++) {
+                Token token = columns.get(col).getTokenAt(row);
+                if (token != null &&
+                    token.equals(columns.get(col+1).getTokenAt(row)) &&
+                    token.equals(columns.get(col+2).getTokenAt(row)) &&
+                    token.equals(columns.get(col+3).getTokenAt(row)) ) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean checkVertical() {
+        for (int col = 0; col < 7; col++) {
+            for (int row = 0; row < 3; row++) {
+                Token token = columns.get(col).getTokenAt(row);
+                if (token != null &&
+                token.equals(columns.get(col).getTokenAt(row+1)) &&
+                token.equals(columns.get(col).getTokenAt(row+2)) &&
+                token.equals(columns.get(col).getTokenAt(row+3)) ) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean checkDiagnoalWin() {
+        for (int col = 0; col < 4; col++) {
+            for (int row = 0; row < 3; row++) {
+                Token token = columns.get(col).getTokenAt(row);
+                if (token != null &&
+                        token.equals(columns.get(col+1).getTokenAt(row+1)) &&
+                        token.equals(columns.get(col+2).getTokenAt(row+2)) &&
+                        token.equals(columns.get(col+3).getTokenAt(row+3))) {
+                    return true;
+                }
+            }
+        }
+
+        for (int col = 0; col < 4; col++) {
+            for (int row = 3; row < 6; row++) {
+                Token token = columns.get(col).getTokenAt(row);
+                if (token != null &&
+                        token.equals(columns.get(col+1).getTokenAt(row-1)) &&
+                        token.equals(columns.get(col+2).getTokenAt(row-2)) &&
+                        token.equals(columns.get(col+3).getTokenAt(row-3))) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
     public boolean isFull(){
-        for (List<Token> column : columns) {
+        for (Column column : columns) {
             if (column.size() < 6) {
                 return false;
             }
