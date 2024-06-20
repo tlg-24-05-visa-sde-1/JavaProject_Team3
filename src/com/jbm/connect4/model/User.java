@@ -29,7 +29,7 @@ public class User extends Player {
         } else if (!openColumns.contains(chosenColumn)) {
             System.out.println("The column " + chosenColumn + " you selected is full. Please choose another column");
         } else {
-            break; // breaks the loop if a valid and open column is chosen
+            break; // breaks the loop if a valid and open column is chosen by user
         }
     }
         scanner.close();
