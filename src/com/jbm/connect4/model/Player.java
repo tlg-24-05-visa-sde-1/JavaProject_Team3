@@ -1,6 +1,9 @@
 package com.jbm.connect4.model;
+<<<<<<< HEAD:src/com/jbm/connect4/model/Player.java
 
 class Player extends User {
+=======
+>>>>>>> User-Player-Bot:src/Player.java
 
 import java.util.ArrayList;
 

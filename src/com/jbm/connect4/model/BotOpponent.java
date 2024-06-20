@@ -1,6 +1,9 @@
 package com.jbm.connect4.model;
+<<<<<<< HEAD:src/com/jbm/connect4/model/BotOpponent.java
 
 class BotOpponent extends User {
+=======
+>>>>>>> User-Player-Bot:src/BotOpponent.java
 
 import java.util.ArrayList;
 import java.util.Random;

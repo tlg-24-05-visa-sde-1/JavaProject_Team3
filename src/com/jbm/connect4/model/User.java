@@ -1,7 +1,10 @@
 package com.jbm.connect4.model;
 
+<<<<<<< HEAD:src/com/jbm/connect4/model/User.java
 <<<<<<< User-Player-Bot
 
+=======
+>>>>>>> User-Player-Bot:src/User.java
 import java.util.ArrayList;
 import java.util.Scanner;
 
