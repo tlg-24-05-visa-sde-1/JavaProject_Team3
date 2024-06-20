@@ -17,8 +17,8 @@ import static com.apps.util.Console.pause;
 public class Controller {
     private final Prompter prompter = new Prompter(new Scanner(System.in));
     private final Board board = new Board();
-    private final User user = new User(new YellowToken());
-    private final BotOpponent bot = new BotOpponent(new RedToken());
+    private final User user = new User(board);
+    private final BotOpponent bot = new BotOpponent(board);
     private boolean gameOver = false;
 
     private final Map<String, OptionHandler> handlers = Map.of(
@@ -28,7 +28,7 @@ public class Controller {
 
     public void execute() {
         clear();
-        new Welcome("WOME TO CONNECT FOUR").show();
+        new Welcome("WELCOME TO CONNECT FOUR").show();
         displayAsciiArt("menus/jbmbanner.txt");
         displayAsciiArt("menus/connect4boardcartoon.txt");
         displayAsciiArt("menus/connect4artofficial.txt");
@@ -90,7 +90,7 @@ public class Controller {
         @Override
         public void execute() {
             clear();
-            user.dropToken(board);
+            user.dropToken(new YellowToken());
             board.show();
             if (board.checkWin()) {
                 System.out.println("User wins!");
@@ -99,7 +99,7 @@ public class Controller {
                 System.out.println("Game over! It's a draw!");
                 gameOver = true;
             } else {
-                bot.dropToken(board);
+                bot.dropToken(new RedToken());
                 board.show();
                 if (board.checkWin()) {
                     System.out.println("Bot wins!");
