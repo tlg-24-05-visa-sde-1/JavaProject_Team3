@@ -1,5 +1,3 @@
-package com.jbm.connect4.controller;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

@@ -1,6 +1,4 @@
-package com.jbm.connect4.controller;
-
-import com.jbm.connect4.model.Token;
+package com.jbm.connect4.model;
 
 import java.util.ArrayList;
 import java.util.List;

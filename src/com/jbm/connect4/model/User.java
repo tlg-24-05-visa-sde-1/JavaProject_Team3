@@ -1,14 +1,13 @@
 package com.jbm.connect4.model;
 
-<<<<<<< HEAD:src/com/jbm/connect4/model/User.java
-<<<<<<< User-Player-Bot
-
-=======
->>>>>>> User-Player-Bot:src/User.java
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
+
 class User extends Player {
+
     public User(Board board) {
         super(board);
     }
@@ -37,23 +36,9 @@ class User extends Player {
         if (!success) {
             throw new IllegalStateException("Failed to drop token in column " + column);
         }
-<<<<<<< HEAD:src/com/jbm/connect4/model/User.java
 
-        // dropToken() : drops the Player (Y) or BotOpponent (r) token into their chosen column
-        public void dropToken(String color) {
-         int column = chooseColumn(); // Gets the chosen column to drop the token into it
-         boolean success = board.update(column, new Token(color)); // attempts to drop token into the column on game board
-         if (!success) {
-             throw new IllegalStateException("Failed to drop token in column " + column);
-         }
-        }
-    }
-=======
-class User extends Player{
+     
 
-}
->>>>>>> main
-=======
     }
 }
->>>>>>> User-Player-Bot:src/User.java
+
