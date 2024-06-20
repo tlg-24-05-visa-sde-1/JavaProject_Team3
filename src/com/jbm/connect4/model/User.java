@@ -24,29 +24,24 @@ public class User extends Player {
             }
             chosenColumn = scanner.nextInt(); // Read int input
 
-            if (chosenColumn >= 0 && chosenColumn <= 6) {
-                if (!openColumns.contains(chosenColumn)) {
-                    System.out.println("The column " + chosenColumn + " you selected is full. Please choose another column.");
-                } else {
-                    break; // Valid and open column is chosen, exit the loop
-                }
-            } else {
+            if (chosenColumn >= 0 && chosenColumn <= 6 && !openColumns.contains(chosenColumn)) {
+                System.out.println("The column " + chosenColumn + " you selected is full. Please choose another column.");
+            } else if (chosenColumn < 0 || chosenColumn > 6) {
                 System.out.println("Invalid column. Please choose a column from 0 to 6.");
+            }
+            while(!openColumns.contains(chosenColumn))
+                return chosenColumn;
+        }
+    }
+
+        @Override
+        public void dropToken(Token token) {
+            int column = chooseColumn();
+            boolean success = board.update(column, token);
+            if (!success) {
+                throw new IllegalStateException("Failed to drop token in column " + column);
             }
         }
 
-        scanner.close(); // Close the scanner after use
-        return chosenColumn;
-    }
-
-    @Override
-    public void dropToken(Token token) {
-        int column = chooseColumn();
-        boolean success = board.update(column, token);
-        if (!success) {
-            throw new IllegalStateException("Failed to drop token in column " + column);
-        }
-    }
 
 }
-
