@@ -1,4 +1,7 @@
+package com.jbm.connect4.model;
+
 <<<<<<< User-Player-Bot
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
