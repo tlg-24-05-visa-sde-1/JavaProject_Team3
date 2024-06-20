@@ -7,9 +7,9 @@ public class Board {
     private List<Column> columns;
 
     public Board() {
-        columns = new ArrayList<>();
+        this.columns = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
-            columns.add(new Column());
+            this.columns.add(new Column());
         }
     }
 
