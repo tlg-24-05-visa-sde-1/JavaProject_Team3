@@ -1,0 +1,8 @@
+---- ----
+Main Menu
+---- ----
+
+Please choose from the following options:
+
+1. Start Game
+X. Exit the application

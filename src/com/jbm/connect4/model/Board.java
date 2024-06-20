@@ -17,18 +17,21 @@ public class Board {
         return columns.get(column).addToken(token);
     }
 
-    public void show () {
+    // Board.java (relevant part)
+    public void show() {
         for (int row = 5; row >= 0; row--) {
             for (int col = 0; col < 7; col++) {
                 Token token = columns.get(col).getTokenAt(row);
                 if (token != null) {
-                    System.out.println("| " + token.getColor() + " ");
-                }else {
-                    System.out.println("| _ ");
+                    System.out.print("| " + (token.getColor().equals("Yellow") ? "Y" : "R") + " ");
+                } else {
+                    System.out.print("|   ");
                 }
             }
             System.out.println("|");
         }
+        System.out.println("-----------------------------");
+        System.out.println("  0   1   2   3   4   5   6  ");
     }
 
     public boolean checkWin () {

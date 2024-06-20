@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import static com.apps.util.Console.clear;
 import static com.apps.util.Console.pause;
@@ -29,16 +30,23 @@ public class Controller {
     public void execute() {
         clear();
         new Welcome("WELCOME TO CONNECT FOUR").show();
-        displayAsciiArt("menus/jbmbanner.txt");
-        displayAsciiArt("menus/connect4boardcartoon.txt");
-        displayAsciiArt("menus/connect4artofficial.txt");
+
+        displayAsciiArtWithPause("menus/jbmbanner.txt", 3);
+        displayAsciiArtWithPause("menus/connect4boardcartoon.txt", 3);
+        displayAsciiArtWithPause("menus/connect4artofficial.txt", 3);
+
         MainMenu mainMenu = new MainMenu();
 
         while (!gameOver) {
             String choice = mainMenu.show();
 
             OptionHandler handler = handlers.get(choice);
-            handler.execute();
+            if (handler != null) {
+                handler.execute();
+            } else {
+                System.out.println("Invalid option. Please try again.");
+                enterToContinue();
+            }
         }
         new GameResult(board).show();
     }
@@ -47,11 +55,18 @@ public class Controller {
     }
 
 
-    private void displayAsciiArt(String filePath) {
+
+    private void displayAsciiArtWithPause(String filePath, int seconds) {
         try {
             String art = Files.readString(Path.of(filePath));
             System.out.println(art);
+            TimeUnit.SECONDS.sleep(seconds);
+            clear();  // Clear the screen after displaying each image
         } catch (IOException e) {
+            System.err.println("Error reading file: " + filePath);
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            System.err.println("Sleep interrupted");
             e.printStackTrace();
         }
     }
@@ -89,24 +104,29 @@ public class Controller {
     private class Option1Handler implements OptionHandler {
         @Override
         public void execute() {
-            clear();
-            user.dropToken(new YellowToken());
-            board.show();
-            if (board.checkWin()) {
-                System.out.println("User wins!");
-                gameOver = true;
-            } else if (board.isFull()) {
-                System.out.println("Game over! It's a draw!");
-                gameOver = true;
-            } else {
-                bot.dropToken(new RedToken());
+            while (!gameOver) {
+                clear();
+                board.show();
+                user.dropToken(new Token("Yellow"));
+                clear();
                 board.show();
                 if (board.checkWin()) {
-                    System.out.println("Bot wins!");
+                    System.out.println("User wins!");
                     gameOver = true;
                 } else if (board.isFull()) {
                     System.out.println("Game over! It's a draw!");
                     gameOver = true;
+                } else {
+                    bot.dropToken(new Token("Red"));
+                    clear();
+                    board.show();
+                    if (board.checkWin()) {
+                        System.out.println("Bot wins!");
+                        gameOver = true;
+                    } else if (board.isFull()) {
+                        System.out.println("Game over! It's a draw!");
+                        gameOver = true;
+                    }
                 }
             }
             enterToContinue();
