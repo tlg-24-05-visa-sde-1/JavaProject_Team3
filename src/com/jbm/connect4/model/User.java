@@ -1,4 +1,5 @@
 package com.jbm.connect4.model;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,19 +30,18 @@ public class User extends Player {
             } else if (chosenColumn < 0 || chosenColumn > 6) {
                 System.out.println("Invalid column. Please choose a column from 0 to 6.");
             }
-            while(!openColumns.contains(chosenColumn))
+            else{
                 return chosenColumn;
+            }
         }
     }
 
-        @Override
-        public void dropToken(Token token) {
-            int column = chooseColumn();
-            boolean success = board.update(column, token);
-            if (!success) {
-                throw new IllegalStateException("Failed to drop token in column " + column);
-            }
+    @Override
+    public void dropToken(Token token) {
+        int column = chooseColumn();
+        boolean success = board.update(column, token);
+        if (!success) {
+            throw new IllegalStateException("Failed to drop token in column " + column);
         }
-
-
+    }
 }
