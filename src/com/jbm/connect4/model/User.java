@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-abstract class User {
+public abstract class User {
     // Protected field(s)/instance variable(s)
     protected Board board;
 
