@@ -1,13 +1,9 @@
 package com.jbm.connect4.model;
-<<<<<<< HEAD:src/com/jbm/connect4/model/Player.java
-
-class Player extends User {
-=======
->>>>>>> User-Player-Bot:src/Player.java
 
 import java.util.ArrayList;
 
-abstract class Player {
+public abstract class Player {
+
     protected Board board;
 
     // Ctor to initialize Player with Board object
@@ -36,5 +32,6 @@ abstract class Player {
 
     protected abstract int chooseColumn();  // Implemented by subclasses: BotOpponent & User
 
-    public abstract void dropToken(String color); // Implemented by subclasses: BotOpponent & User
+    public abstract void dropToken(Token token); // Implemented by subclasses: BotOpponent & User
+    // Implemented by subclasses: BotOpponent & User
 }

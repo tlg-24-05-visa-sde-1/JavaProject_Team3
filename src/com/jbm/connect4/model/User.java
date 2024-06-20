@@ -1,12 +1,9 @@
 package com.jbm.connect4.model;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
-
-
-class User extends Player {
+public class User extends Player {
 
     public User(Board board) {
         super(board);
@@ -25,20 +22,17 @@ class User extends Player {
             }
             chosenColumn = scanner.nextInt(); // Read int input
         } while (!openColumns.contains(chosenColumn));  // Repeats process if chosen column is not open
-        scanner.close();
         return chosenColumn;
     }
 
     @Override
-    public void dropToken(String color) {
+    public void dropToken(Token token) {
         int column = chooseColumn();
-        boolean success = board.update(column, new Token(color));
+        boolean success = board.update(column, token);
         if (!success) {
             throw new IllegalStateException("Failed to drop token in column " + column);
         }
-
-     
-
     }
+
 }
 

@@ -100,5 +100,8 @@ public class Board {
         }
         return true;
     }
+    public boolean canDropToken(int column) {
+        return columns.get(column).size() < 6;
+    }
 
 }
