@@ -17,5 +17,6 @@ public class Welcome {
         pause(2000);
         System.out.print("Done!");
         pause(2000);
+        System.out.println();
     }
 }

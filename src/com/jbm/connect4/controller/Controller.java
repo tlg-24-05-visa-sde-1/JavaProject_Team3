@@ -60,7 +60,7 @@ public class Controller {
             String art = Files.readString(Path.of(filePath));
             System.out.println(art);
             TimeUnit.SECONDS.sleep(seconds);
-            clear();  // Clear the screen after displaying each image
+            clear();
         } catch (IOException e) {
             System.err.println("Error reading file: " + filePath);
             e.printStackTrace();
