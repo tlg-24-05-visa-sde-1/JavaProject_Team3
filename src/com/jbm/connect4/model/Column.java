@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Column {
     private List<Token> tokens;
+
     public Column() {
         tokens = new ArrayList<Token>();
     }

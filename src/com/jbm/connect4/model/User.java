@@ -29,8 +29,7 @@ public class User extends Player {
                 System.out.println("The column " + chosenColumn + " you selected is full. Please choose another column.");
             } else if (chosenColumn < 0 || chosenColumn > 6) {
                 System.out.println("Invalid column. Please choose a column from 0 to 6.");
-            }
-            else{
+            } else {
                 return chosenColumn;
             }
         }

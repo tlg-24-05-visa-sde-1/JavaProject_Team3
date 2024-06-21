@@ -17,13 +17,20 @@ public class Board {
         return columns.get(column).addToken(token);
     }
 
-    // Board.java (relevant part)
     public void show() {
+        final String RESET = "\033[0m";
+        final String YELLOW = "\033[33m";
+        final String RED = "\033[31m";
+
         for (int row = 5; row >= 0; row--) {
             for (int col = 0; col < 7; col++) {
                 Token token = columns.get(col).getTokenAt(row);
                 if (token != null) {
-                    System.out.print("| " + (token.getColor().equals("Yellow") ? "Y" : "R") + " ");
+                    if (token.getColor().equals("Yellow")) {
+                        System.out.print("| " + YELLOW + "Y" + RESET + " ");
+                    } else {
+                        System.out.print("| " + RED + "R" + RESET + " ");
+                    }
                 } else {
                     System.out.print("|   ");
                 }
@@ -34,7 +41,7 @@ public class Board {
         System.out.println("  0   1   2   3   4   5   6  ");
     }
 
-    public boolean checkWin () {
+    public boolean checkWin() {
         return checkHorizantalWin() || checkVertical() || checkDiagnoalWin();
     }
 
@@ -43,9 +50,9 @@ public class Board {
             for (int col = 0; col < 4; col++) {
                 Token token = columns.get(col).getTokenAt(row);
                 if (token != null &&
-                    token.equals(columns.get(col+1).getTokenAt(row)) &&
-                    token.equals(columns.get(col+2).getTokenAt(row)) &&
-                    token.equals(columns.get(col+3).getTokenAt(row)) ) {
+                        token.equals(columns.get(col + 1).getTokenAt(row)) &&
+                        token.equals(columns.get(col + 2).getTokenAt(row)) &&
+                        token.equals(columns.get(col + 3).getTokenAt(row))) {
                     return true;
                 }
             }
@@ -58,9 +65,9 @@ public class Board {
             for (int row = 0; row < 3; row++) {
                 Token token = columns.get(col).getTokenAt(row);
                 if (token != null &&
-                token.equals(columns.get(col).getTokenAt(row+1)) &&
-                token.equals(columns.get(col).getTokenAt(row+2)) &&
-                token.equals(columns.get(col).getTokenAt(row+3)) ) {
+                        token.equals(columns.get(col).getTokenAt(row + 1)) &&
+                        token.equals(columns.get(col).getTokenAt(row + 2)) &&
+                        token.equals(columns.get(col).getTokenAt(row + 3))) {
                     return true;
                 }
             }
@@ -73,9 +80,9 @@ public class Board {
             for (int row = 0; row < 3; row++) {
                 Token token = columns.get(col).getTokenAt(row);
                 if (token != null &&
-                        token.equals(columns.get(col+1).getTokenAt(row+1)) &&
-                        token.equals(columns.get(col+2).getTokenAt(row+2)) &&
-                        token.equals(columns.get(col+3).getTokenAt(row+3))) {
+                        token.equals(columns.get(col + 1).getTokenAt(row + 1)) &&
+                        token.equals(columns.get(col + 2).getTokenAt(row + 2)) &&
+                        token.equals(columns.get(col + 3).getTokenAt(row + 3))) {
                     return true;
                 }
             }
@@ -85,9 +92,9 @@ public class Board {
             for (int row = 3; row < 6; row++) {
                 Token token = columns.get(col).getTokenAt(row);
                 if (token != null &&
-                        token.equals(columns.get(col+1).getTokenAt(row-1)) &&
-                        token.equals(columns.get(col+2).getTokenAt(row-2)) &&
-                        token.equals(columns.get(col+3).getTokenAt(row-3))) {
+                        token.equals(columns.get(col + 1).getTokenAt(row - 1)) &&
+                        token.equals(columns.get(col + 2).getTokenAt(row - 2)) &&
+                        token.equals(columns.get(col + 3).getTokenAt(row - 3))) {
                     return true;
                 }
             }
@@ -95,7 +102,8 @@ public class Board {
 
         return false;
     }
-    public boolean isFull(){
+
+    public boolean isFull() {
         for (Column column : columns) {
             if (column.size() < 6) {
                 return false;
@@ -103,6 +111,7 @@ public class Board {
         }
         return true;
     }
+
     public boolean canDropToken(int column) {
         return columns.get(column).size() < 6;
     }

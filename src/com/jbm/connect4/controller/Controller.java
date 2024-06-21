@@ -31,9 +31,8 @@ public class Controller {
         clear();
         new Welcome("WELCOME TO CONNECT FOUR").show();
 
-        displayAsciiArtWithPause("menus/jbmbanner.txt", 3);
-        displayAsciiArtWithPause("menus/connect4boardcartoon.txt", 3);
-        displayAsciiArtWithPause("menus/connect4artofficial.txt", 3);
+        displayAsciiArtWithPause("menus/jbmbanner2.txt", 3);
+        displayAsciiArtWithPause("menus/connect4artofficial2.txt", 3);
 
         MainMenu mainMenu = new MainMenu();
 
@@ -50,10 +49,10 @@ public class Controller {
         }
         new GameResult(board).show();
     }
+
     private void enterToContinue() {
         prompter.prompt("Press [Enter] to continue: ");
     }
-
 
 
     private void displayAsciiArtWithPause(String filePath, int seconds) {
@@ -72,20 +71,19 @@ public class Controller {
     }
 
 
-
     private class MainMenu {
         private static final String regex = "(\\s*1\\s*)|(\\s*2\\s*)|(\\s*X\\s*)|(\\s*x\\s*)";
         private final String menuFilePath = "menus/" + getClass().getSimpleName() + ".txt";
         private String menuText;
 
         public MainMenu() {
-            try{
+            try {
                 menuText = Files.readString(Path.of(menuFilePath));
-            }
-            catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
         public String show() {
             clear();
             System.out.println(menuText);
@@ -142,7 +140,6 @@ public class Controller {
             gameOver = true;
         }
     }
-
 
 
 }

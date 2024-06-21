@@ -19,19 +19,20 @@ public class BoardTest {
         redToken = new Token("Red");
         yellowToken = new Token("Yellow");
     }
+
     @Test
     public void testValidUpdate() {
         assertTrue(board.update(3, yellowToken));
         assertTrue(board.update(4, yellowToken));
     }
 
-    @Test (expected=IndexOutOfBoundsException.class )
-    public void testInvalidUpdateLowerBound(){
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testInvalidUpdateLowerBound() {
         board.update(-1, redToken);
     }
 
-    @Test (expected=IndexOutOfBoundsException.class )
-    public void testInvalidUpdateUpperBound(){
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testInvalidUpdateUpperBound() {
         board.update(7, redToken);
 
     }

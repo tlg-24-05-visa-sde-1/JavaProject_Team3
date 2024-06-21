@@ -11,7 +11,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
 
-import static jdk.internal.org.jline.utils.InfoCmp.Capability.columns;
+
 import static org.junit.Assert.*;
 
 
@@ -29,20 +29,18 @@ public class UserTest {
 
     @Test
     public void testChooseColumnWithValidInput() {
-        System.setIn(new ByteArrayInputStream("3\n" .getBytes()));
+        System.setIn(new ByteArrayInputStream("3\n".getBytes()));
         int column = user.chooseColumn();
-        assertEquals(3,column);
+        assertEquals(3, column);
     }
 
 
     @Test
     public void testChooseColumnWithInvalidInput() {
-        System.setIn(new ByteArrayInputStream("8\n0\n" .getBytes()));
+        System.setIn(new ByteArrayInputStream("8\n0\n".getBytes()));
         int column = user.chooseColumn();
-        assertEquals(0,column);
+        assertEquals(0, column);
     }
-
-
 
 
     @Test
@@ -58,5 +56,5 @@ public class UserTest {
         assertEquals(4, result);
     }
 
-    }
+}
 

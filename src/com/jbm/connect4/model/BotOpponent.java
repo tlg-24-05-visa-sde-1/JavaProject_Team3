@@ -1,4 +1,5 @@
 package com.jbm.connect4.model;
+
 import java.util.ArrayList;
 import java.util.Random;
 

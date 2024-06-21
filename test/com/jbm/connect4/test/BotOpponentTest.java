@@ -12,7 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
 
-import static jdk.internal.org.jline.utils.InfoCmp.Capability.columns;
+
 import static org.junit.Assert.*;
 
 

@@ -13,6 +13,7 @@ public class Welcome {
     public void show() {
         blankLines(2);
         System.out.print("Loading, please wait...");
+        System.out.println();
         pause(2000);
         System.out.print("Done!");
         pause(2000);
