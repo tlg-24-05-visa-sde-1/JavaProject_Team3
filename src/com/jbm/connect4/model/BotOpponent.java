@@ -9,7 +9,7 @@ public class BotOpponent extends Player {
     }
 
     @Override
-    protected int chooseColumn() {
+    public int chooseColumn() {
         // Gets list of open columns using the method from the Player class
         ArrayList<Integer> openColumns = getOpenColumns();
 

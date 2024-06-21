@@ -11,7 +11,7 @@ public class User extends Player {
     }
 
     @Override
-    protected int chooseColumn() {
+    public int chooseColumn() {
         ArrayList<Integer> openColumns = getOpenColumns(); // Get the list of open columns
         Scanner scanner = new Scanner(System.in);
         int chosenColumn = -1; // Initialize with an invalid value
